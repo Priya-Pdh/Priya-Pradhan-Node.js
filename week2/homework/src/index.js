@@ -27,16 +27,14 @@ let add = fs.appendFile('file.txt', `${args.join(' ')}\n`, function (err) {
   console.log('Added new item!');
 });
 
-let data = '';
+let toDoList = data ? JSON.parse(data) : [];
 let reset = fs.writeFile('file.txt', `${args.join(' ')}\n`, function (err, data) {
-  let toDoList = data ? JSON.parse(data) : [];
   if (err) throw err;
   console.log('Done writing!');
 });
 
 
 let list = fs.readFile('file.txt', function (err, data) {
-  let toDoList = data ? JSON.parse(data) : [];
   if (err) throw err;
   console.log("done reading");
 })
@@ -45,7 +43,7 @@ let remove = fs.unlinkSync('file.txt', function (err, data) {
   
 })
 
-let update = fs.appendFile('file.txt', `${args.split('\n')}`, function (err) {
+let update = fs.readFileSync('file.txt', `${args.split('\n')}`, function (err) {
   if (err) throw err;
   console.log('Added new item!');
 })
@@ -58,19 +56,19 @@ switch (args) {
   }
   case 'add': {
     todoList.push(args[1])
-    console.log(JSON.stringify(todoList))
+    console.log(JSON.stringify(toDoList))
     break;
   }
   case 'remove': {
     todoList.splice(arg[1], 1)
-    fs.writeFileSync('file.txt', JSON.stringify(todoList));
-    console.log(JSON.stringify(todoList))
+    fs.writeFileSync('list.txt', JSON.stringify(toDoList));
+    console.log(JSON.stringify(toDoList))
     break;
   }
   case 'reset': {
     todoList = [];
-    fs.writeFileSync(file.txt, JSON.stringify(todoList));
-    console.log(JSON.stringify(todoList))
+    fs.writeFileSync(list.txt, JSON.stringify(toDoList));
+    console.log(JSON.stringify(toDoList))
     break;
   }
   
@@ -79,3 +77,6 @@ switch (args) {
     break;
     }
 }
+
+
+

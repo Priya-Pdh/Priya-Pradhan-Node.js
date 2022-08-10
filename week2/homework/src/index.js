@@ -63,13 +63,13 @@ switch (args) {
   }
   case 'remove': {
     todoList.splice(arg[1], 1)
-    fs.writeFileSync('list.txt', JSON.stringify(todoList));
+    fs.writeFileSync('file.txt', JSON.stringify(todoList));
     console.log(JSON.stringify(todoList))
     break;
   }
   case 'reset': {
     todoList = [];
-    fs.writeFileSync(list.txt, JSON.stringify(todoList));
+    fs.writeFileSync(file.txt, JSON.stringify(todoList));
     console.log(JSON.stringify(todoList))
     break;
   }

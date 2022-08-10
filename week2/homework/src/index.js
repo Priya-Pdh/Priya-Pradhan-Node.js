@@ -2,36 +2,60 @@
 
 // TODO: Write the homework code in this file
 
+'use strict'
+
 let fs = require('fs');
 
 let arg = process.argv.slice(2);
 let args = process.argv.slice(3);
 
-fs.appendFile('list.txt', `${args.join(' ')}\n`, function (err) {
+if (!arg || arg == 'help') {
+  console.log(`Usage: node index.js [options]
+  HackYourFuture Node.js Week 2 - Lecture To-Do App
+  Options:
+    list          read all to-dos
+    add           add to-do
+    update        updates item on specific location
+    remove        removes specific entry at specific location
+    reset         resets file with removing all previous data
+    help          show this help text
+    `);
+}
+
+let data = '';
+
+let add = fs.appendFile('file.txt', `${args.join(' ')}\n`, function (err) {
   if (err) throw err;
   console.log('Added new item!');
 });
 
-fs.writeFile('file.txt', 'To-do-List', function (err, data) {
+let reset = fs.writeFile('file.txt', `${args.join(' ')}\n`, function (err, data) {
   let toDoList = data ? JSON.parse(data) : [];
   if (err) throw err;
   console.log('Done writing!');
 });
 
-if (!arg || arg == 'help') {
-  console.log("I can Help");
-}
 
-fs.readFile('list.txt', function (err, data) {
+let list = fs.readFile('file.txt', function (err, data) {
+  let toDoList = data ? JSON.parse(data) : [];
   if (err) throw err;
   console.log("done reading");
 })
 
-let todoList = data ? JSON.parse(data) : [];
+let remove = fs.unlinkSync('file.txt', function (err, data) {
+  
+})
 
-switch (arg) {
+let update = fs.readFileSync('file.txt', `${args.split('\n')}`, function (err) {
+  if (err) throw err;
+  console.log('Added new item!');
+})
+
+
+switch (args) {
   case 'list': {
     console.log(JSON.stringify(toDoList))
+    break;
   }
   case 'add': {
     todoList.push(args[1])
@@ -53,5 +77,6 @@ switch (arg) {
   
   default: {
     console.log('Helpful text');
+    break;
     }
 }

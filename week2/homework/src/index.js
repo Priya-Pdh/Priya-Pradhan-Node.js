@@ -6,8 +6,8 @@
 
 let fs = require('fs');
 
-let arg = process.argv.slice(2);
-let args = process.argv.slice(3);
+let args = process.argv.slice(2);
+let arg = args[0];
 
 if (!arg || arg == 'help') {
   console.log(`Usage: node index.js [options]

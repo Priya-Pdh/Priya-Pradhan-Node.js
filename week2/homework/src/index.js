@@ -46,7 +46,7 @@ let remove = fs.unlinkSync('file.txt', function (err, data) {
   
 })
 
-let update = fs.readFileSync('file.txt', `${args.split('\n')}`, function (err) {
+let update = fs.appendFile('file.txt', `${args.split('\n')}`, function (err) {
   if (err) throw err;
   console.log('Added new item!');
 })

@@ -22,13 +22,12 @@ if (!arg || arg == 'help') {
     `);
 }
 
-let data = '';
-
 let add = fs.appendFile('file.txt', `${args.join(' ')}\n`, function (err) {
   if (err) throw err;
   console.log('Added new item!');
 });
 
+let data = '';
 let reset = fs.writeFile('file.txt', `${args.join(' ')}\n`, function (err, data) {
   let toDoList = data ? JSON.parse(data) : [];
   if (err) throw err;

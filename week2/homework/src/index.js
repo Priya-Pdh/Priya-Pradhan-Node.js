@@ -3,10 +3,6 @@
 // TODO: Write the homework code in this file
 
 
-'use strict';
-
-// TODO: Write the homework code in this file
-
 let fs = require('fs');
 
 let args = process.argv.slice(2);
